@@ -57,7 +57,7 @@
 +%PROFILE_INC
 +%PROFILE_LIB         -lnvtx_prof -lnvToolsExt -Mcuda
 +
-+%CPP	             cpp
++%CPP                 cpp
 +%FC                  mpif90 -c
 +%FCFLAGS             $FCFLAGS
 +%FFLAGS              %FCFLAGS
