@@ -193,14 +193,18 @@ export LDFLAGS="$LDFLAGS -L$PYTHON_DIR/lib"
 ###########
 ########### PSyclone
 ###########
-PSYCLONE_VERSION=2.1.0
-PSYCLONE_DIR=$PYTHON_DIR/share/psyclone
+PSYCLONE_VERSION=310_enter_data
+PSYCLONE_DIR=$DEP_DIR/psyclone-$PSYCLONE_VERSION
 
-pip3 install PSyclone==$PSYCLONE_VERSION
+git clone https://github.com/stfc/PSyclone.git $PSYCLONE_DIR
+cd $PSYCLONE_DIR
+git checkout $PSYCLONE_VERSION
+pip3 install -e .
 cd $PSYCLONE_DIR/lib/profiling/nvidia
 F90=mpif90 make
 
 export PSYCLONE_DIR
+export PSYCLONE_CONFIG=$PSYCLONE_DIR/config/psyclone.cfg
 export CPPFLAGS="$CPPFLAGS -I$PSYCLONE_DIR/lib/profiling/nvidia"
 export LDFLAGS="$LDFLAGS -L$PSYCLONE_DIR/lib/profiling/nvidia"
 
@@ -236,3 +240,4 @@ echo "export LDFLAGS='$LDFLAGS'" >> $SETUP_SCRIPT
 echo "export MANPATH='$MANPATH'" >> $SETUP_SCRIPT
 echo "export OPAL_PREFIX='$OPAL_PREFIX'" >> $SETUP_SCRIPT
 echo "export PSYCLONE_DIR='$PSYCLONE_DIR'" >> $SETUP_SCRIPT
+echo "export PSYCLONE_CONFIG='$PSYCLONE_CONFIG'" >> $SETUP_SCRIPT
