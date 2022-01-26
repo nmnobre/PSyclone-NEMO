@@ -40,3 +40,6 @@ PSY: SC
 
 clean:
 	rm -rf cfgs/$(NEW_CFG)_*
+
+%:
+	@$(MAKE) `echo $@ | tr [:lower:] [:upper:]`
