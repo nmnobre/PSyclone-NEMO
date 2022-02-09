@@ -38,6 +38,7 @@ PSY: SC
 	$(PSY_SCR)/process_nemo.py -s $(PSY_SCR)/kernels_trans.py -o $(OPT_SRC) \
 		cfgs/$(NEW_CFG)_$</BLD/ppsrc/nemo/*f90
 	./assumed_to_explicit_chars.py $(OPT_SRC)/domvvl.f90
+	patch $(OPT_SRC)/lib_fortran.f90 < psy_fixes.patch
 
 clean:
 	rm -rf cfgs/$(NEW_CFG)_*
