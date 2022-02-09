@@ -153,24 +153,6 @@ wget -O - http://cpanmin.us | perl - --self-upgrade
 cpanm URI
 
 ###########
-########### XIOS
-###########
-XIOS_DIR=$DEP_DIR/xios-trunk
-
-cd $BUILD_DIR
-svn co http://forge.ipsl.jussieu.fr/ioserver/svn/XIOS/trunk XIOS
-cd XIOS
-XIOS_DIR=$XIOS_DIR-r$(svnversion)
-ln -s /usr/bin/make gmake
-patch -p0 < $TOPLEVEL/patch/xios.patch
-PATH=$PWD:$PATH ./make_xios --full --arch NVHPC_LINUX --job $PARCOMP
-cp -r ../XIOS $XIOS_DIR
-
-export PATH=$XIOS_DIR/bin:$PATH
-export CPPFLAGS="$CPPFLAGS -I$XIOS_DIR/inc"
-export LDFLAGS="$LDFLAGS -L$XIOS_DIR/lib"
-
-###########
 ########### PYTHON
 ###########
 PYTHON_VERSION=3.10.2
