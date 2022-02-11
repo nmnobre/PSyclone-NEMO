@@ -1,5 +1,5 @@
-# SPITZ2 configuration w/ the OPA ocean dynamical core module (OCE) but
-#                      w/o the SI3 sea ice module (ICE), XIOS support, nor MPI partitioning
+# SPITZ12 configuration w/ the OPA ocean dynamical core module (OCE) but
+#                       w/o the SI3 sea ice module (ICE), XIOS support, nor MPI partitioning
 
 PARCOMP ?= 4
 
