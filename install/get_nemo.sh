@@ -7,7 +7,7 @@ set -e
 export TOPLEVEL=$PWD
 export DEP_DIR=$TOPLEVEL/dev
 export BUILD_DIR=$TOPLEVEL/build
-export PARCOMP=4
+export PARCOMP=$(nproc)
 
 mkdir -p $BUILD_DIR
 

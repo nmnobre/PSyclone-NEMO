@@ -1,7 +1,7 @@
 # SPITZ12 configuration w/ the OPA ocean dynamical core module (OCE) but
 #                       w/o the SI3 sea ice module (ICE), XIOS support, nor MPI partitioning
 
-PARCOMP ?= 4
+PARCOMP ?= $(shell nproc)
 
 REF_CFG = SPITZ12
 NEW_CFG = SPITZ12_OCE
