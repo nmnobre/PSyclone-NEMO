@@ -133,7 +133,7 @@ export LDFLAGS="$LDFLAGS -L$NETCDF_F_DIR/lib"
 ###########
 ########### PERL
 ###########
-PERL_VERSION=5.34.0
+PERL_VERSION=5.34.1
 PERL_DIR=$DEP_DIR/perl-$PERL_VERSION
 
 cd $BUILD_DIR
