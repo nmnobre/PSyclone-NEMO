@@ -155,7 +155,7 @@ cpanm URI
 ###########
 ########### PYTHON
 ###########
-PYTHON_VERSION=3.10.2
+PYTHON_VERSION=3.10.3
 PYTHON_DIR=$DEP_DIR/python-$PYTHON_VERSION
 
 cd $BUILD_DIR
