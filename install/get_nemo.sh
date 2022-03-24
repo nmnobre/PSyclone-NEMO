@@ -77,7 +77,7 @@ mkdir hdf5-${HDF5_VERSION}_build
 cd hdf5-${HDF5_VERSION}_build
 wget 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' -O $BUILD_DIR/hdf5-$HDF5_VERSION/bin/config.guess
 wget 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD'  -O $BUILD_DIR/hdf5-$HDF5_VERSION/bin/config.sub
-CC=mpicc CFLAGS=-fPIC CXX=mpicxx FC=mpif90 FCFLAGS=-fPIC CPP=cpp $BUILD_DIR/hdf5-$HDF5_VERSION/configure --prefix=$HDF5_DIR --enable-shared --enable-fortran --enable-fortran2003 --enable-parallel
+CC=mpicc CFLAGS=-fPIC CXX=mpicxx FC=mpif90 FCFLAGS=-fPIC CPP=cpp $BUILD_DIR/hdf5-$HDF5_VERSION/configure --prefix=$HDF5_DIR --enable-shared --enable-fortran --enable-parallel
 make -j$PARCOMP
 make install
 
