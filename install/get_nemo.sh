@@ -32,8 +32,6 @@ nvcompdir=$NVHPC_DIR/$TARGET_ARCH/$NVHPC_VERSION/compilers
 nvmathdir=$NVHPC_DIR/$TARGET_ARCH/$NVHPC_VERSION/math_libs
 nvcommdir=$NVHPC_DIR/$TARGET_ARCH/$NVHPC_VERSION/comm_libs
 
-export NVHPC=$NVHPC_DIR
-export NVHPC_ROOT=$NVHPC_DIR/$TARGET_ARCH/$NVHPC_VERSION
 export PATH=$nvcudadir/bin${PATH:+:${PATH}}
 export PATH=$nvcompdir/bin:$PATH
 export PATH=$nvcommdir/mpi/bin:$PATH
@@ -213,8 +211,6 @@ SETUP_SCRIPT=env_nemo.sh
 cd $TOPLEVEL
 rm -f $SETUP_SCRIPT
 
-echo "export NVHPC='$NVHPC'" >> $SETUP_SCRIPT
-echo "export NVHPC_ROOT='$NVHPC_ROOT'" >> $SETUP_SCRIPT
 echo "export PATH='$PATH'" >> $SETUP_SCRIPT
 echo "export LD_LIBRARY_PATH='$LD_LIBRARY_PATH'" >> $SETUP_SCRIPT
 echo "export CPPFLAGS='$CPPFLAGS'" >> $SETUP_SCRIPT
