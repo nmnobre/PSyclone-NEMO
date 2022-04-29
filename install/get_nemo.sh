@@ -63,7 +63,7 @@ export OPAL_PREFIX=$nvcommdir/mpi
 ###########
 ########### HDF5
 ###########
-HDF5_VERSION=1.12.1
+HDF5_VERSION=1.12.2
 HDF5_DIR=$DEP_DIR/hdf5-$HDF5_VERSION
 
 HDF5_MVERSION=$(sed 's/\.[0-9]*$//' <<< $HDF5_VERSION)
