@@ -14,8 +14,8 @@ mkdir -p $BUILD_DIR
 ###########
 ########### NVIDIA HPC SDK
 ###########
-NVHPC_VERSION=22.3
-CUDA_VERSION=11.6
+NVHPC_VERSION=22.5
+CUDA_VERSION=11.7
 TARGET_ARCH=Linux_x86_64
 
 NVHPC_VSTR=$(sed 's/\.//' <<< $NVHPC_VERSION)
