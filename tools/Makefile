@@ -29,7 +29,8 @@ all: SC MC GPU
 SC MC GPU:
 	FCFLAGS="$(FCFLAGS_$@)" LDFLAGS="$(LDFLAGS_$@)" \
 		./makenemo -n $(NEW_CFG)_$@ -r $(REF_CFG) -m linux_nvhpc -j $(PARCOMP) -e $(OPT_SRC_$@) \
-		add_key "IEEE_IS_NAN=ieee_is_nan key_nosignedzero" del_key "key_iomput key_mpp_mpi key_si3"
+		add_key "IEEE_IS_NAN=ieee_is_nan key_noisnan key_nosignedzero" \
+		del_key "key_iomput key_mpp_mpi key_si3"
 
 MC GPU: PSY
 
