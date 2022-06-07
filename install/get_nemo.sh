@@ -131,7 +131,7 @@ export LDFLAGS="$LDFLAGS -L$NETCDF_F_DIR/lib"
 ###########
 ########### PERL
 ###########
-PERL_VERSION=5.34.1
+PERL_VERSION=5.36.0
 PERL_DIR=$DEP_DIR/perl-$PERL_VERSION
 
 cd $BUILD_DIR
@@ -153,7 +153,7 @@ cpanm URI
 ###########
 ########### PYTHON
 ###########
-PYTHON_VERSION=3.10.4
+PYTHON_VERSION=3.10.5
 PYTHON_DIR=$DEP_DIR/python-$PYTHON_VERSION
 
 cd $BUILD_DIR
