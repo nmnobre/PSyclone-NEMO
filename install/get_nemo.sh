@@ -69,12 +69,12 @@ HDF5_DIR=$DEP_DIR/hdf5-$HDF5_VERSION
 HDF5_MVERSION=$(sed 's/\.[0-9]*$//' <<< $HDF5_VERSION)
 
 cd $BUILD_DIR
-wget http://www.hdfgroup.org/ftp/HDF5/prev-releases/hdf5-$HDF5_MVERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz
+wget https://www.hdfgroup.org/ftp/HDF5/prev-releases/hdf5-$HDF5_MVERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz
 tar -xzf hdf5-$HDF5_VERSION.tar.gz
 mkdir hdf5-${HDF5_VERSION}_build
 cd hdf5-${HDF5_VERSION}_build
-wget 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' -O $BUILD_DIR/hdf5-$HDF5_VERSION/bin/config.guess
-wget 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD'  -O $BUILD_DIR/hdf5-$HDF5_VERSION/bin/config.sub
+wget 'https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' -O $BUILD_DIR/hdf5-$HDF5_VERSION/bin/config.guess
+wget 'https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD'  -O $BUILD_DIR/hdf5-$HDF5_VERSION/bin/config.sub
 CC=mpicc CFLAGS=-fPIC CXX=mpicxx FC=mpif90 FCFLAGS=-fPIC CPP=cpp $BUILD_DIR/hdf5-$HDF5_VERSION/configure --prefix=$HDF5_DIR --enable-shared --enable-fortran --enable-parallel
 make -j$PARCOMP
 make install
@@ -95,8 +95,8 @@ wget https://github.com/Unidata/netcdf-c/archive/refs/tags/v$NETCDF_C_VERSION.zi
 unzip v$NETCDF_C_VERSION.zip
 mkdir netcdf-c-${NETCDF_C_VERSION}_build
 cd netcdf-c-${NETCDF_C_VERSION}_build
-wget 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' -O $BUILD_DIR/netcdf-c-$NETCDF_C_VERSION/config.guess
-wget 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD'  -O $BUILD_DIR/netcdf-c-$NETCDF_C_VERSION/config.sub
+wget 'https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' -O $BUILD_DIR/netcdf-c-$NETCDF_C_VERSION/config.guess
+wget 'https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD'  -O $BUILD_DIR/netcdf-c-$NETCDF_C_VERSION/config.sub
 CC=mpicc CFLAGS=-fPIC CXX=mpicxx FC=mpif90 FCFLAGS=-fPIC CPP=cpp $BUILD_DIR/netcdf-c-$NETCDF_C_VERSION/configure --prefix=$NETCDF_C_DIR --disable-dap
 make -j$PARCOMP
 make install
@@ -117,8 +117,8 @@ wget https://github.com/Unidata/netcdf-fortran/archive/refs/tags/v$NETCDF_F_VERS
 unzip v$NETCDF_F_VERSION.zip
 mkdir netcdf-fortran-${NETCDF_F_VERSION}_build
 cd netcdf-fortran-${NETCDF_F_VERSION}_build
-wget 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' -O $BUILD_DIR/netcdf-fortran-$NETCDF_F_VERSION/config.guess
-wget 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD'  -O $BUILD_DIR/netcdf-fortran-$NETCDF_F_VERSION/config.sub
+wget 'https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' -O $BUILD_DIR/netcdf-fortran-$NETCDF_F_VERSION/config.guess
+wget 'https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD'  -O $BUILD_DIR/netcdf-fortran-$NETCDF_F_VERSION/config.sub
 CC=mpicc CFLAGS=-fPIC CXX=mpicxx FC=mpif90 FCFLAGS=-fPIC CPP=cpp $BUILD_DIR/netcdf-fortran-$NETCDF_F_VERSION/configure --prefix=$NETCDF_F_DIR
 make -j$PARCOMP
 make install
@@ -147,7 +147,7 @@ export PATH=$PERL_DIR/bin:$PATH
 export MANPATH=$PERL_DIR/man:$MANPATH
 export PERL_CPANM_HOME=$PERL_DIR/cpanm
 
-wget -O - http://cpanmin.us | perl - --self-upgrade
+wget -O - https://cpanmin.us | perl - --self-upgrade
 cpanm URI
 
 ###########
