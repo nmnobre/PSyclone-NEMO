@@ -2,7 +2,20 @@
 set -e
 
 ###########
-########### PREPARE INSTALLATION ENVIRONMENT
+########### Software versions
+###########
+NVHPC_VERSION=22.5
+CUDA_VERSION=11.7
+HDF5_VERSION=1.12.2
+NETCDF_C_VERSION=4.8.1
+NETCDF_F_VERSION=4.5.4
+PERL_VERSION=5.36.0
+PYTHON_VERSION=3.10.5
+PSYCLONE_VERSION=master
+NEMO_VERSION=4.0_mirror_SI3_GPU
+
+###########
+########### Installation environment
 ###########
 export TOPLEVEL=$PWD
 export DEP_DIR=$TOPLEVEL/dev
@@ -14,8 +27,6 @@ mkdir -p $BUILD_DIR
 ###########
 ########### NVIDIA HPC SDK
 ###########
-NVHPC_VERSION=22.5
-CUDA_VERSION=11.7
 TARGET_ARCH=Linux_x86_64
 
 NVHPC_VSTR=$(sed 's/\.//' <<< $NVHPC_VERSION)
@@ -63,7 +74,6 @@ export OPAL_PREFIX=$nvcommdir/mpi
 ###########
 ########### HDF5
 ###########
-HDF5_VERSION=1.12.2
 HDF5_DIR=$DEP_DIR/hdf5-$HDF5_VERSION
 
 HDF5_MVERSION=$(sed 's/\.[0-9]*$//' <<< $HDF5_VERSION)
@@ -85,9 +95,8 @@ export CPPFLAGS="$CPPFLAGS -I$HDF5_DIR/include"
 export LDFLAGS="$LDFLAGS -L$HDF5_DIR/lib"
 
 ###########
-########### NETCDF-C
+########### netCDF-C
 ###########
-NETCDF_C_VERSION=4.8.1
 NETCDF_C_DIR=$DEP_DIR/netcdf-c-$NETCDF_C_VERSION
 
 cd $BUILD_DIR
@@ -107,9 +116,8 @@ export CPPFLAGS="$CPPFLAGS -I$NETCDF_C_DIR/include"
 export LDFLAGS="$LDFLAGS -L$NETCDF_C_DIR/lib"
 
 ###########
-########### NETCDF-Fortran
+########### netCDF-Fortran
 ###########
-NETCDF_F_VERSION=4.5.4
 NETCDF_F_DIR=$DEP_DIR/netcdf-fortran-$NETCDF_F_VERSION
 
 cd $BUILD_DIR
@@ -129,9 +137,8 @@ export CPPFLAGS="$CPPFLAGS -I$NETCDF_F_DIR/include"
 export LDFLAGS="$LDFLAGS -L$NETCDF_F_DIR/lib"
 
 ###########
-########### PERL
+########### Perl
 ###########
-PERL_VERSION=5.36.0
 PERL_DIR=$DEP_DIR/perl-$PERL_VERSION
 
 cd $BUILD_DIR
@@ -151,9 +158,8 @@ wget -O - https://cpanmin.us | perl - --self-upgrade
 cpanm URI
 
 ###########
-########### PYTHON
+########### Python
 ###########
-PYTHON_VERSION=3.10.5
 PYTHON_DIR=$DEP_DIR/python-$PYTHON_VERSION
 
 cd $BUILD_DIR
@@ -173,7 +179,6 @@ export LDFLAGS="$LDFLAGS -L$PYTHON_DIR/lib"
 ###########
 ########### PSyclone
 ###########
-PSYCLONE_VERSION=310_enter_data
 PSYCLONE_DIR=$DEP_DIR/psyclone-$PSYCLONE_VERSION
 
 git clone https://github.com/stfc/PSyclone.git $PSYCLONE_DIR
@@ -191,7 +196,6 @@ export LDFLAGS="$LDFLAGS -L$PSYCLONE_DIR/lib/profiling/nvidia"
 ###########
 ########### NEMO
 ###########
-NEMO_VERSION=4.0_mirror_SI3_GPU
 NEMO_DIR=$TOPLEVEL/nemo-$NEMO_VERSION
 
 svn co https://forge.ipsl.jussieu.fr/nemo/svn/NEMO/branches/UKMO/NEMO_$NEMO_VERSION $NEMO_DIR
@@ -199,12 +203,12 @@ cd $NEMO_DIR
 patch -p0 < $TOPLEVEL/patch/nemo.patch
 
 ###########
-########### CLEAN-UP
+########### Clean-up
 ###########
 rm -rf $BUILD_DIR
 
 ###########
-########### SETUP SCRIPT
+########### Setup script
 ###########
 SETUP_SCRIPT=env_nemo.sh
 
