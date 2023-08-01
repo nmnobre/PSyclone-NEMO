@@ -4,14 +4,14 @@ set -e
 ###########
 ########### Software versions
 ###########
-NVHPC_VERSION=22.11
-CUDA_VERSION=11.8
-HDF5_VERSION=1.12.2
-NETCDF_C_VERSION=4.9.0
-NETCDF_F_VERSION=4.6.0
-PERL_VERSION=5.36.0
-PYTHON_VERSION=3.11.1
-PARALLEL_VERSION=20220522
+NVHPC_VERSION=23.7
+CUDA_VERSION=12.2
+HDF5_VERSION=1.14.1-2
+NETCDF_C_VERSION=4.9.2
+NETCDF_F_VERSION=4.6.1
+PERL_VERSION=5.38.0
+PYTHON_VERSION=3.11.4
+PARALLEL_VERSION=20230722
 PSYCLONE_VERSION=master
 NEMO_VERSION=4.0_mirror_SI3_GPU
 
@@ -77,10 +77,11 @@ export OPAL_PREFIX=$nvcommdir/mpi
 ###########
 HDF5_DIR=$DEP_DIR/hdf5-$HDF5_VERSION
 
-HDF5_MVERSION=$(sed 's/\.[0-9]*$//' <<< $HDF5_VERSION)
+HDF5_MVERSION=$(sed 's/\.[0-9,-]*$//' <<< $HDF5_VERSION)
+HDF5_mVERSION=$(sed 's/-[0-9]*$//' <<< $HDF5_VERSION)
 
 cd $BUILD_DIR
-wget https://www.hdfgroup.org/ftp/HDF5/prev-releases/hdf5-$HDF5_MVERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz
+wget https://www.hdfgroup.org/ftp/HDF5/prev-releases/hdf5-$HDF5_MVERSION/hdf5-$HDF5_mVERSION/src/hdf5-$HDF5_VERSION.tar.gz
 tar -xzf hdf5-$HDF5_VERSION.tar.gz
 mkdir hdf5-${HDF5_VERSION}_build
 cd hdf5-${HDF5_VERSION}_build
@@ -107,7 +108,7 @@ mkdir netcdf-c-${NETCDF_C_VERSION}_build
 cd netcdf-c-${NETCDF_C_VERSION}_build
 wget 'https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' -O $BUILD_DIR/netcdf-c-$NETCDF_C_VERSION/config.guess
 wget 'https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD'  -O $BUILD_DIR/netcdf-c-$NETCDF_C_VERSION/config.sub
-CC=mpicc CFLAGS=-fPIC CXX=mpicxx FC=mpif90 FCFLAGS=-fPIC CPP=cpp $BUILD_DIR/netcdf-c-$NETCDF_C_VERSION/configure --prefix=$NETCDF_C_DIR --disable-dap
+CC=mpicc CFLAGS=-fPIC CXX=mpicxx FC=mpif90 FCFLAGS=-fPIC CPP=cpp $BUILD_DIR/netcdf-c-$NETCDF_C_VERSION/configure --prefix=$NETCDF_C_DIR --disable-dap --disable-libxml2
 make -j$PARCOMP
 make install
 
