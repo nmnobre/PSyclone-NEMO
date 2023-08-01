@@ -1,6 +1,6 @@
-# Treating NEMO 🌊 to the PSyclone 🌀 whirl
+# 🌊 ♥️ 🌀 Treating NEMO to the PSyclone whirl
 
-NEMO, the Nucleus for European Modelling of the Ocean, is a state-of-the-art modelling framework for research and forecasting activities in ocean and climate sciences, developed by a European consortium formed by CMCC 🇮🇹, CNRS and MOi 🇫🇷, and the Met Office and NERC 🇬🇧 since 2008.
+NEMO, the Nucleus for European Modelling of the Ocean, is a state-of-the-art modelling framework for research and forecasting activities in ocean and climate sciences, developed since 2008 by a European consortium formed by CMCC 🇮🇹, CNRS and MOi 🇫🇷, and the Met Office and NERC 🇬🇧.
 
 ## Installation
 
