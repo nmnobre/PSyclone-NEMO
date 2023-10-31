@@ -36,7 +36,7 @@ MC GPU: PSY
 
 PSY: SC
 	mkdir -p $(OPT_SRC)
-	parallel $(PSY_SCR)/process_nemo.py -x -s $(PSY_SCR)/kernels_trans.py -o $(OPT_SRC) \
+	parallel $(PSY_SCR)/process_nemo.py -x -s $(PSY_SCR)/acc_kernels_trans.py -o $(OPT_SRC) \
 		{} ::: cfgs/$(NEW_CFG)_$</BLD/ppsrc/nemo/*f90
 	./assumed_to_explicit_chars.py $(OPT_SRC)/domvvl.f90
 
