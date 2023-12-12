@@ -46,18 +46,18 @@ nvcommdir=$NVHPC_DIR/$TARGET_ARCH/$NVHPC_VERSION/comm_libs
 
 export PATH=$nvcudadir/bin${PATH:+:${PATH}}
 export PATH=$nvcompdir/bin:$PATH
-export PATH=$nvcommdir/mpi/bin:$PATH
+export PATH=$nvcommdir/openmpi/openmpi-3.1.5/bin:$PATH
 export PATH=$nvcompdir/extras/qd/bin:$PATH
 export LD_LIBRARY_PATH=$nvcudadir/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 export LD_LIBRARY_PATH=$nvcudadir/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$nvcompdir/extras/qd/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$nvcompdir/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$nvmathdir/lib64:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$nvcommdir/mpi/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$nvcommdir/openmpi/openmpi-3.1.5/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$nvcommdir/nccl/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$nvcommdir/nvshmem/lib:$LD_LIBRARY_PATH
 export CPPFLAGS="$CPPFLAGS -I$nvmathdir/include"
-export CPPFLAGS="$CPPFLAGS -I$nvcommdir/mpi/include"
+export CPPFLAGS="$CPPFLAGS -I$nvcommdir/openmpi/openmpi-3.1.5/include"
 export CPPFLAGS="$CPPFLAGS -I$nvcommdir/nccl/include"
 export CPPFLAGS="$CPPFLAGS -I$nvcommdir/nvshmem/include"
 export CPPFLAGS="$CPPFLAGS -I$nvcompdir/extras/qd/include/qd"
@@ -66,11 +66,11 @@ export LDFLAGS="$LDFLAGS -L$nvcudadir/extras/CUPTI/lib64"
 export LDFLAGS="$LDFLAGS -L$nvcompdir/extras/qd/lib"
 export LDFLAGS="$LDFLAGS -L$nvcompdir/lib"
 export LDFLAGS="$LDFLAGS -L$nvmathdir/lib64"
-export LDFLAGS="$LDFLAGS -L$nvcommdir/mpi/lib"
+export LDFLAGS="$LDFLAGS -L$nvcommdir/openmpi/openmpi-3.1.5/lib"
 export LDFLAGS="$LDFLAGS -L$nvcommdir/nccl/lib"
 export LDFLAGS="$LDFLAGS -L$nvcommdir/nvshmem/lib"
 export MANPATH=$nvcompdir/man${MANPATH:+:${MANPATH}}
-export OPAL_PREFIX=$nvcommdir/mpi
+export OPAL_PREFIX=$nvcommdir/openmpi/openmpi-3.1.5
 
 ###########
 ########### HDF5
