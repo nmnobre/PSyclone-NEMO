@@ -1,3 +1,16 @@
+--- src/OCE/LBC/lib_mpp.F90
++++ src/OCE/LBC/lib_mpp.F90
+@@ -1670,7 +1670,7 @@
+       INTEGER, OPTIONAL            , INTENT(in   ) ::   localComm
+       CHARACTER(len=*),DIMENSION(:) ::   ldtxt
+       CHARACTER(len=*) ::   ldname
+-      INTEGER ::   kumnam_ref, knumnam_cfg , kumond , kstop
++      INTEGER ::   kumnam_ref, knumnam_cfg , kumond , kstop, function_value
+       IF( PRESENT( localComm ) ) mpi_comm_oce = localComm
+       function_value = 0
+       IF( .FALSE. )   ldtxt(:) = 'never done'
+
+
 --- mk/bldxag.cfg
 +++ mk/bldxag.cfg
 @@ -50,6 +50,7 @@
