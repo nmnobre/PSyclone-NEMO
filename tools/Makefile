@@ -11,9 +11,9 @@ FCFLAGS_SC  = $(FCFLAGS)
 FCFLAGS_MC  = $(FCFLAGS) -acc=multicore
 FCFLAGS_GPU = $(FCFLAGS) -acc=gpu -gpu=managed
 
-LDFLAGS_SC  = $(LDFLAGS)
-LDFLAGS_MC  = $(LDFLAGS) -acc=multicore
-LDFLAGS_GPU = $(LDFLAGS) -acc=gpu -gpu=managed
+LDFLAGS_SC  =
+LDFLAGS_MC  = -acc=multicore
+LDFLAGS_GPU = -acc=gpu -gpu=managed
 
 OPT_SRC     = $(CURDIR)/cfgs/$(NEW_CFG)_PSY
 OPT_SRC_SC  = none
@@ -43,5 +43,5 @@ PSY: SC
 clean:
 	rm -rf cfgs/$(NEW_CFG)_*
 
-%:
+sc mc gpu:
 	@$(MAKE) `echo $@ | tr [:lower:] [:upper:]`

@@ -56,19 +56,11 @@ export LD_LIBRARY_PATH=$nvmathdir/lib64:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$nvcommdir/openmpi/openmpi-3.1.5/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$nvcommdir/nccl/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$nvcommdir/nvshmem/lib:$LD_LIBRARY_PATH
-export CPPFLAGS="$CPPFLAGS -I$nvmathdir/include"
-export CPPFLAGS="$CPPFLAGS -I$nvcommdir/openmpi/openmpi-3.1.5/include"
-export CPPFLAGS="$CPPFLAGS -I$nvcommdir/nccl/include"
-export CPPFLAGS="$CPPFLAGS -I$nvcommdir/nvshmem/include"
-export CPPFLAGS="$CPPFLAGS -I$nvcompdir/extras/qd/include/qd"
-export LDFLAGS="$LDFLAGS -L$nvcudadir/lib64"
-export LDFLAGS="$LDFLAGS -L$nvcudadir/extras/CUPTI/lib64"
-export LDFLAGS="$LDFLAGS -L$nvcompdir/extras/qd/lib"
-export LDFLAGS="$LDFLAGS -L$nvcompdir/lib"
-export LDFLAGS="$LDFLAGS -L$nvmathdir/lib64"
-export LDFLAGS="$LDFLAGS -L$nvcommdir/openmpi/openmpi-3.1.5/lib"
-export LDFLAGS="$LDFLAGS -L$nvcommdir/nccl/lib"
-export LDFLAGS="$LDFLAGS -L$nvcommdir/nvshmem/lib"
+export CPATH=$nvmathdir/include${CPATH:+:${CPATH}}
+export CPATH=$nvcommdir/openmpi/openmpi-3.1.5/include:$CPATH
+export CPATH=$nvcommdir/nccl/include:$CPATH
+export CPATH=$nvcommdir/nvshmem/include:$CPATH
+export CPATH=$nvcompdir/extras/qd/include/qd:$CPATH
 export MANPATH=$nvcompdir/man${MANPATH:+:${MANPATH}}
 export OPAL_PREFIX=$nvcommdir/openmpi/openmpi-3.1.5
 
@@ -93,8 +85,8 @@ make install
 
 export PATH=$HDF5_DIR/bin:$PATH
 export LD_LIBRARY_PATH=$HDF5_DIR/lib:$LD_LIBRARY_PATH
-export CPPFLAGS="$CPPFLAGS -I$HDF5_DIR/include"
-export LDFLAGS="$LDFLAGS -L$HDF5_DIR/lib"
+export CPATH=$HDF5_DIR/include:$CPATH
+export LIBRARY_PATH=$HDF5_DIR/lib:$LIBRARY_PATH
 
 ###########
 ########### netCDF-C
@@ -114,8 +106,8 @@ make install
 
 export PATH=$NETCDF_C_DIR/bin:$PATH
 export LD_LIBRARY_PATH=$NETCDF_C_DIR/lib:$LD_LIBRARY_PATH
-export CPPFLAGS="$CPPFLAGS -I$NETCDF_C_DIR/include"
-export LDFLAGS="$LDFLAGS -L$NETCDF_C_DIR/lib"
+export CPATH=$NETCDF_C_DIR/include:$CPATH
+export LIBRARY_PATH=$NETCDF_C_DIR/lib:$LIBRARY_PATH
 
 ###########
 ########### netCDF-Fortran
@@ -135,8 +127,8 @@ make install
 
 export PATH=$NETCDF_F_DIR/bin:$PATH
 export LD_LIBRARY_PATH=$NETCDF_F_DIR/lib:$LD_LIBRARY_PATH
-export CPPFLAGS="$CPPFLAGS -I$NETCDF_F_DIR/include"
-export LDFLAGS="$LDFLAGS -L$NETCDF_F_DIR/lib"
+export CPATH=$NETCDF_F_DIR/include:$CPATH
+export LIBRARY_PATH=$NETCDF_F_DIR/lib:$LIBRARY_PATH
 
 ###########
 ########### Perl
@@ -175,8 +167,8 @@ make install
 
 export PATH=$PYTHON_DIR/bin:$PATH
 export LD_LIBRARY_PATH=$PYTHON_DIR/lib:$LD_LIBRARY_PATH
-export CPPFLAGS="$CPPFLAGS -I$PYTHON_DIR/include"
-export LDFLAGS="$LDFLAGS -L$PYTHON_DIR/lib"
+export CPATH=$PYTHON_DIR/include:$CPATH
+export LIBRARY_PATH=$PYTHON_DIR/lib:$LIBRARY_PATH
 
 ###########
 ########### Parallel
@@ -208,8 +200,8 @@ F90=mpif90 make
 
 export PSYCLONE_DIR
 export PSYCLONE_CONFIG=$PSYCLONE_DIR/config/psyclone.cfg
-export CPPFLAGS="$CPPFLAGS -I$PSYCLONE_DIR/lib/profiling/nvidia"
-export LDFLAGS="$LDFLAGS -L$PSYCLONE_DIR/lib/profiling/nvidia"
+export CPATH=$PSYCLONE_DIR/lib/profiling/nvidia:$CPATH
+export LIBRARY_PATH=$PSYCLONE_DIR/lib/profiling/nvidia:$LIBRARY_PATH
 
 ###########
 ########### NEMO
@@ -235,8 +227,9 @@ rm -f $SETUP_SCRIPT
 
 echo "export PATH='$PATH'" >> $SETUP_SCRIPT
 echo "export LD_LIBRARY_PATH='$LD_LIBRARY_PATH'" >> $SETUP_SCRIPT
-echo "export CPPFLAGS='$CPPFLAGS'" >> $SETUP_SCRIPT
-echo "export LDFLAGS='$LDFLAGS'" >> $SETUP_SCRIPT
+echo "export CPATH='$CPATH'" >> $SETUP_SCRIPT
+echo "export CPPFLAGS='$(echo -I$CPATH | sed 's/:/ -I/g')'" >> $SETUP_SCRIPT
+echo "export LIBRARY_PATH='$LIBRARY_PATH'" >> $SETUP_SCRIPT
 echo "export MANPATH='$MANPATH'" >> $SETUP_SCRIPT
 echo "export OPAL_PREFIX='$OPAL_PREFIX'" >> $SETUP_SCRIPT
 echo "export PSYCLONE_DIR='$PSYCLONE_DIR'" >> $SETUP_SCRIPT
