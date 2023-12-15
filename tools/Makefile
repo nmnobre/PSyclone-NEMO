@@ -1,5 +1,6 @@
 # SPITZ12 configuration w/ the OPA ocean dynamical core module (OCE) but
-#                       w/o the SI3 sea ice module (ICE), XIOS support, nor MPI partitioning
+# w/o the SI3 sea ice module (ICE), XIOS support, nor MPI partitioning.
+# Use key_noisnan instead of IEEE_IS_NAN=ieee_is_nan for NEMO 4.0.7 or above.
 
 PARCOMP ?= $(shell nproc)
 
@@ -29,7 +30,7 @@ all: SC MC GPU
 SC MC GPU:
 	FCFLAGS="$(FCFLAGS_$@)" LDFLAGS="$(LDFLAGS_$@)" \
 		./makenemo -n $(NEW_CFG)_$@ -r $(REF_CFG) -m linux_nvhpc -j $(PARCOMP) -e $(OPT_SRC_$@) \
-		add_key "IEEE_IS_NAN=ieee_is_nan key_noisnan key_nosignedzero" \
+		add_key "IEEE_IS_NAN=ieee_is_nan key_nosignedzero" \
 		del_key "key_iomput key_mpp_mpi key_si3"
 
 MC GPU: PSY
