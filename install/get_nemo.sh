@@ -4,14 +4,14 @@ set -e
 ###########
 ########### Software versions
 ###########
-NVHPC_VERSION=24.1
-CUDA_VERSION=12.3
-HDF5_VERSION=1.14.3
+NVHPC_VERSION=24.5
+CUDA_VERSION=12.4
+HDF5_VERSION=1.14.4-3
 NETCDF_C_VERSION=4.9.2
 NETCDF_F_VERSION=4.6.1
 PERL_VERSION=5.38.2
-PYTHON_VERSION=3.12.2
-PARALLEL_VERSION=20240122
+PYTHON_VERSION=3.12.3
+PARALLEL_VERSION=20240522
 PSYCLONE_VERSION=master
 NEMO_VERSION=4.0_mirror_SI3_GPU
 
@@ -69,11 +69,10 @@ export OPAL_PREFIX=$nvcommdir/openmpi/openmpi-3.1.5
 ###########
 HDF5_DIR=$DEP_DIR/hdf5-$HDF5_VERSION
 
-HDF5_MVERSION=$(sed 's/\.[0-9,-]*$//' <<< $HDF5_VERSION)
-HDF5_mVERSION=$(sed 's/-[0-9]*$//' <<< $HDF5_VERSION)
+HDF5_DVERSION=$(sed 's/-/./' <<< $HDF5_VERSION)
 
 cd $BUILD_DIR
-wget https://www.hdfgroup.org/ftp/HDF5/prev-releases/hdf5-$HDF5_MVERSION/hdf5-$HDF5_mVERSION/src/hdf5-$HDF5_VERSION.tar.gz
+wget https://github.com/HDFGroup/hdf5/releases/download/hdf5_$HDF5_DVERSION/hdf5-$HDF5_VERSION.tar.gz
 tar -xzf hdf5-$HDF5_VERSION.tar.gz
 mkdir hdf5-${HDF5_VERSION}_build
 cd hdf5-${HDF5_VERSION}_build
