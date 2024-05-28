@@ -160,7 +160,7 @@ wget https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tg
 tar -xzf Python-$PYTHON_VERSION.tgz
 mkdir Python-${PYTHON_VERSION}_build
 cd Python-${PYTHON_VERSION}_build
-CC=gcc CXX=g++ FF=gfortran FC=gfortran $BUILD_DIR/Python-$PYTHON_VERSION/configure --enable-optimizations --with-ensurepip=install --prefix=$PYTHON_DIR
+CC=gcc CXX=g++ FF=gfortran FC=gfortran $BUILD_DIR/Python-$PYTHON_VERSION/configure --enable-optimizations --with-lto --with-ensurepip=install --prefix=$PYTHON_DIR
 make -j$PARCOMP
 make install
 
