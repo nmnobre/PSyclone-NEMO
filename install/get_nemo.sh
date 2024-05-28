@@ -207,7 +207,7 @@ export LIBRARY_PATH=$PSYCLONE_DIR/lib/profiling/nvidia:$LIBRARY_PATH
 ###########
 NEMO_DIR=$TOPLEVEL/nemo-$NEMO_VERSION
 
-svn co https://forge.ipsl.jussieu.fr/nemo/svn/NEMO/branches/UKMO/NEMO_$NEMO_VERSION $NEMO_DIR --non-interactive --trust-server-cert
+svn co https://forge.ipsl.jussieu.fr/nemo/svn/NEMO/branches/UKMO/NEMO_$NEMO_VERSION $NEMO_DIR --non-interactive --trust-server-cert-failures="unknown-ca,cn-mismatch,expired,not-yet-valid,other"
 cd $NEMO_DIR
 patch -p0 < $TOPLEVEL/patch/nemo.patch
 
