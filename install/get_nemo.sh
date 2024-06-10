@@ -39,30 +39,8 @@ wget https://developer.download.nvidia.com/hpc-sdk/${NVHPC_VERSION}/nvhpc_${NVHP
 tar xpzf nvhpc_${NVHPC_YEAR}_${NVHPC_VSTR}_${TARGET_ARCH}_cuda_${CUDA_VERSION}.tar.gz
 NVHPC_SILENT=true NVHPC_INSTALL_DIR=$NVHPC_DIR NVHPC_INSTALL_TYPE=single ./nvhpc_${NVHPC_YEAR}_${NVHPC_VSTR}_${TARGET_ARCH}_cuda_${CUDA_VERSION}/install
 
-nvcudadir=$NVHPC_DIR/$TARGET_ARCH/$NVHPC_VERSION/cuda
-nvcompdir=$NVHPC_DIR/$TARGET_ARCH/$NVHPC_VERSION/compilers
-nvmathdir=$NVHPC_DIR/$TARGET_ARCH/$NVHPC_VERSION/math_libs
-nvcommdir=$NVHPC_DIR/$TARGET_ARCH/$NVHPC_VERSION/comm_libs
-
-export PATH=$nvcudadir/bin${PATH:+:${PATH}}
-export PATH=$nvcompdir/bin:$PATH
-export PATH=$nvcommdir/openmpi/openmpi-3.1.5/bin:$PATH
-export PATH=$nvcompdir/extras/qd/bin:$PATH
-export LD_LIBRARY_PATH=$nvcudadir/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-export LD_LIBRARY_PATH=$nvcudadir/extras/CUPTI/lib64:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$nvcompdir/extras/qd/lib:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$nvcompdir/lib:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$nvmathdir/lib64:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$nvcommdir/openmpi/openmpi-3.1.5/lib:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$nvcommdir/nccl/lib:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$nvcommdir/nvshmem/lib:$LD_LIBRARY_PATH
-export CPATH=$nvmathdir/include${CPATH:+:${CPATH}}
-export CPATH=$nvcommdir/openmpi/openmpi-3.1.5/include:$CPATH
-export CPATH=$nvcommdir/nccl/include:$CPATH
-export CPATH=$nvcommdir/nvshmem/include:$CPATH
-export CPATH=$nvcompdir/extras/qd/include/qd:$CPATH
-export MANPATH=$nvcompdir/man${MANPATH:+:${MANPATH}}
-export OPAL_PREFIX=$nvcommdir/openmpi/openmpi-3.1.5
+module use $NVHPC_DIR/modulefiles
+module load nvhpc/$NVHPC_VERSION
 
 ###########
 ########### HDF5
@@ -107,6 +85,8 @@ export PATH=$NETCDF_C_DIR/bin:$PATH
 export LD_LIBRARY_PATH=$NETCDF_C_DIR/lib:$LD_LIBRARY_PATH
 export CPATH=$NETCDF_C_DIR/include:$CPATH
 export LIBRARY_PATH=$NETCDF_C_DIR/lib:$LIBRARY_PATH
+
+sed -i 's/\/libmpi.la//g' $NETCDF_C_DIR/lib/libnetcdf.la
 
 ###########
 ########### netCDF-Fortran
