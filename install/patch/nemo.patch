@@ -68,7 +68,7 @@
 +%OASIS_INC           -I%OASIS_HOME/build/lib/mct -I%OASIS_HOME/build/lib/psmile.MPI1
 +%OASIS_LIB           -L%OASIS_HOME/lib -lpsmile.MPI1 -lmct -lmpeu -lscrip
 +%PROFILE_INC
-+%PROFILE_LIB         -lnvtx_prof -lnvToolsExt -Mcuda
++%PROFILE_LIB         -lnvtx_prof -lnvToolsExt -cuda
 +
 +%CPP                 cpp
 +%FC                  mpif90 -c
