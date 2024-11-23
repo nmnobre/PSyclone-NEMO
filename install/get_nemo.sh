@@ -42,6 +42,9 @@ NVHPC_SILENT=true NVHPC_INSTALL_DIR=$NVHPC_DIR NVHPC_INSTALL_TYPE=single ./nvhpc
 module use $NVHPC_DIR/modulefiles
 module load nvhpc/$NVHPC_VERSION
 
+module use $NVHPC_ROOT/comm_libs/$CUDA_VERSION/hpcx/latest/modulefiles
+module load hpcx
+
 ###########
 ########### HDF5
 ###########

@@ -10,11 +10,11 @@ NEW_CFG = SPITZ12_OCE
 FCFLAGS     = -i4 -r8 -O3 -fast -Mcray=pointer -Mpre -Mvect=fuse,prefetch,tile -Minline
 FCFLAGS_SC  = $(FCFLAGS)
 FCFLAGS_MC  = $(FCFLAGS) -acc=multicore
-FCFLAGS_GPU = $(FCFLAGS) -acc=gpu -gpu=managed
+FCFLAGS_GPU = $(FCFLAGS) -acc=gpu -gpu=mem:managed
 
 LDFLAGS_SC  =
 LDFLAGS_MC  = -acc=multicore
-LDFLAGS_GPU = -acc=gpu -gpu=managed
+LDFLAGS_GPU = -acc=gpu -gpu=mem:managed
 
 OPT_SRC     = $(CURDIR)/cfgs/$(NEW_CFG)_PSY
 OPT_SRC_SC  = none
@@ -37,9 +37,8 @@ MC GPU: PSY
 
 PSY: SC
 	mkdir -p $(OPT_SRC)
-	parallel $(PSY_SCR)/process_nemo.py -x -s $(PSY_SCR)/acc_kernels_trans.py -o $(OPT_SRC) \
+	parallel psyclone -s $(PSY_SCR)/acc_kernels_trans.py -I $(OPAL_PREFIX)/include -o $(OPT_SRC)/{/} \
 		{} ::: cfgs/$(NEW_CFG)_$</BLD/ppsrc/nemo/*f90
-	./assumed_to_explicit_chars.py $(OPT_SRC)/domvvl.f90
 
 clean:
 	rm -rf cfgs/$(NEW_CFG)_*
