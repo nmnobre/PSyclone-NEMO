@@ -57,9 +57,7 @@ wget https://github.com/HDFGroup/hdf5/releases/download/hdf5_$HDF5_DVERSION/hdf5
 tar -xzf hdf5-$HDF5_VERSION.tar.gz
 mkdir hdf5-${HDF5_VERSION}_build
 cd hdf5-${HDF5_VERSION}_build
-wget 'https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' -O $BUILD_DIR/hdf5-$HDF5_VERSION/bin/config.guess
-wget 'https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD'  -O $BUILD_DIR/hdf5-$HDF5_VERSION/bin/config.sub
-CC=mpicc CFLAGS=-fPIC CXX=mpicxx FC=mpif90 FCFLAGS=-fPIC CPP=cpp $BUILD_DIR/hdf5-$HDF5_VERSION/configure --prefix=$HDF5_DIR --enable-shared --enable-fortran --enable-parallel --disable-nonstandard-feature-float16
+CC=mpicc CXX=mpicxx FC=mpif90 cmake ../hdf5-$HDF5_VERSION -DHDF5_BUILD_FORTRAN=ON -DHDF5_ENABLE_PARALLEL=ON -DHDF5_ENABLE_NONSTANDARD_FEATURE_FLOAT16=OFF -DCMAKE_INSTALL_PREFIX=$HDF5_DIR
 make -j$PARCOMP
 make install
 
