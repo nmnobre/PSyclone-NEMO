@@ -22,7 +22,7 @@ export MPIF90=psyclonefc
 export PSYCLONE_OPTS="--enable-cache -l output -s $PSYCLONE_DIR/examples/nemo/scripts/omp_gpu_trans.py"
 
 cd $NEMO_DIR
-./makenemo -r BENCH -m linux_spack_profile -n $TEST_NAME -j 4
+./makenemo -r BENCH -m linux_spack_profile -n $TEST_NAME -j $(nproc)
 
 cd $NEMO_DIR/tests/$TEST_NAME/EXP00
 cp $PSYCLONE_DIR/examples/nemo/scripts/KGOs/namelist_cfg_bench_small namelist_cfg
