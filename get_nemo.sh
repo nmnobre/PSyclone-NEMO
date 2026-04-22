@@ -11,7 +11,6 @@ NETCDF_C_VERSION=4.10.0
 NETCDF_F_VERSION=4.6.2
 PERL_VERSION=5.42.2
 PYTHON_VERSION=3.14.4
-PARALLEL_VERSION=20260322
 PSYCLONE_VERSION=master
 NEMO_VERSION=5.0-RC
 
@@ -149,22 +148,6 @@ export PATH=$PYTHON_DIR/bin:$PATH
 export LD_LIBRARY_PATH=$PYTHON_DIR/lib:$LD_LIBRARY_PATH
 export CPATH=$PYTHON_DIR/include:$CPATH
 export LIBRARY_PATH=$PYTHON_DIR/lib:$LIBRARY_PATH
-
-###########
-########### Parallel
-###########
-PARALLEL_DIR=$DEP_DIR/parallel-$PARALLEL_VERSION
-
-cd $BUILD_DIR
-wget https://ftp.gnu.org/gnu/parallel/parallel-$PARALLEL_VERSION.tar.bz2
-tar -xf parallel-$PARALLEL_VERSION.tar.bz2
-mkdir parallel-${PARALLEL_VERSION}_build
-cd parallel-${PARALLEL_VERSION}_build
-CC=gcc CXX=g++ FF=gfortran FC=gfortran $BUILD_DIR/parallel-$PARALLEL_VERSION/configure --prefix=$PARALLEL_DIR
-make -j$PARCOMP
-make install
-
-export PATH=$PARALLEL_DIR/bin:$PATH
 
 ###########
 ########### PSyclone
