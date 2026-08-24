@@ -19,7 +19,7 @@ export ENABLE_PROFILING=
 export REPRODUCIBLE=
 export PSYCLONE_COMPILER=mpif90
 export MPIF90=psyclonefc
-export PSYCLONE_OPTS="--enable-cache -l output -s $PSYCLONE_DIR/examples/nemo/scripts/omp_gpu_trans.py"
+export PSYCLONE_OPTS="--enable-cache -l output -s $PSYCLONE_DIR/examples/nemo/scripts/insert_loop_parallelism.py"
 
 cd $NEMO_DIR
 ./makenemo -r BENCH -m linux_spack_profile -n $TEST_NAME -j $(nproc)
