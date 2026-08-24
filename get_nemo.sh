@@ -61,9 +61,9 @@ make -j$PARCOMP
 make install
 
 export PATH=$HDF5_DIR/bin:$PATH
-export LD_LIBRARY_PATH=$HDF5_DIR/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$HDF5_DIR/lib64:$LD_LIBRARY_PATH
 export CPATH=$HDF5_DIR/include:$CPATH
-export LIBRARY_PATH=$HDF5_DIR/lib:$LIBRARY_PATH
+export LIBRARY_PATH=$HDF5_DIR/lib64:$LIBRARY_PATH
 
 ###########
 ########### netCDF-C
