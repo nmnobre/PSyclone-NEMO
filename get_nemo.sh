@@ -31,7 +31,7 @@ TARGET_ARCH=Linux_x86_64
 
 NVHPC_VSTR=$(sed 's/\.//' <<< $NVHPC_VERSION)
 NVHPC_YEAR=20$(sed 's/\..*//' <<< $NVHPC_VERSION)
-NVHPC_DIR=$DEP_DIR/nvhpc_sdk-$NVHPC_VERSION
+NVHPC_DIR=$DEP_DIR/nvhpc-sdk-$NVHPC_VERSION
 
 cd $BUILD_DIR
 wget https://developer.download.nvidia.com/hpc-sdk/${NVHPC_VERSION}/nvhpc_${NVHPC_YEAR}_${NVHPC_VSTR}_${TARGET_ARCH}_cuda_${CUDA_VERSION}.tar.gz
