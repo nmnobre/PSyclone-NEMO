@@ -19,6 +19,7 @@ export ENABLE_PROFILING=
 export REPRODUCIBLE=
 export PSYCLONE_COMPILER=mpif90
 export MPIF90=psyclonefc
+export PARALLEL_DIRECTIVES="omp_offloading+omp_threading"
 export PSYCLONE_OPTS="--enable-cache -l output -s $PSYCLONE_DIR/examples/nemo/scripts/insert_loop_parallelism.py"
 
 cd $NEMO_DIR
