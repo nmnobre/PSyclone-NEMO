@@ -4,8 +4,8 @@ set -e
 ###########
 ########### Software versions
 ###########
-NVHPC_VERSION=26.5
-CUDA_VERSION=13.2
+NVHPC_VERSION=26.9
+CUDA_VERSION=13.3
 HDF5_VERSION=2.2.0
 NETCDF_C_VERSION=4.10.1
 NETCDF_F_VERSION=4.6.4
